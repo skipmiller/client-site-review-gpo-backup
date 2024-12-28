@@ -1,0 +1,44 @@
+#webster@carlwebster.com
+#Sr. Solutions Architect at Choice Solutions, LLC
+#@carlwebster on Twitter
+#http://www.CarlWebster.com
+#Created on April 25, 2018
+
+#Version 1.23 12-Sep-2019
+#	Add a Rename parameter switch. (Thanks to Jani Kohonen for this suggestion)
+#	If a GPO name contains any the following characters, <>:"\/|?*, replace the character 
+#	with an _ (Underscore), allowing the creation of a report file in Windows.
+#	The GPO is then renamed in the Group Policy Management Console and Active Directory.
+#	The default is False.
+
+#Version 1.22 24-Apr-2019
+#	Fixed bug when a GPO had been linked multiple times. The script counted all the GPOs, 
+#		even the duplicates. Added -Unique to the Sort.
+#		If a GPO was linked ten times, the script backed up the GPO ten times and created
+#		the reports ten times.
+
+#Version 1.21 11-Apr-2019
+#	If -OrganizationUnit parameter was used, the $ADDomain paramater was blanked out and
+#		not available for the Zip file creation. IF $ADDomain is blank, set $ADDomain to
+#		$Env:USERDNSDOMAIN
+
+#Version 1.20 29-Mar-2019
+#	Received performance tuning help from Michael B. Smith for this update
+#	Add requirement for the ActiveDirectory module
+#	Add simple error checking to the backup and report creation
+#	Add two parameters: GPOFilter and OrganizationalUnit
+#	Adding testing for illegal filename characters '<>:"\/|?*' in the GPO name before 
+#	creating the HTML and XML report files.
+#	If both ADDomain and OrganizationalUnit are specified, set ADDomain to empty string
+#	Updated Function ProcessScriptEnd with new parameters
+#	Updated help text
+
+#Version 1.10 1-Jun-2018
+#
+#	Add Parameter MaxZipSize (in MBs)
+#		Test combined size of the two Zip files created to see if <= to MaxZipSize
+#		If > MaxZipSize, do not attempt the email
+#	Backup GPOs one at a time
+#		Show the name of each GPO being backed up to show the GPO causing a backup error
+
+#Version 1.0 released to the community on 1-May-2018
